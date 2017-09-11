@@ -5,26 +5,20 @@ import util.text.read.ReadTextUtil;
 
 public class CompareTextUtil implements IConstant {
 
-	private CompareStringLineDto[] compareStringA, compareStringB;
-	private int COMPARE_SIZE;
-
-	private String trackSubsequence(int table[][], String a[], String b[]) {
+	private CompareStringLineDto[] trackSubsequence(int table[][], String a[], String b[]) {
 		StringBuilder result = null;
 		int i = a.length, j = b.length;
 		boolean isDone = false;
 
-		COMPARE_SIZE = a.length + b.length - table[a.length][b.length];
+		int COMPARE_SIZE = a.length + b.length - table[a.length][b.length];
 
-		compareStringA = new CompareStringLineDto[COMPARE_SIZE];
-		compareStringB = new CompareStringLineDto[COMPARE_SIZE];
+		CompareStringLineDto[] compareString = new CompareStringLineDto[COMPARE_SIZE];
 
 		for (int idx = 0; idx < COMPARE_SIZE; idx++) {
-			compareStringA[idx] = new CompareStringLineDto();
-			compareStringB[idx] = new CompareStringLineDto();
+			compareString[idx] = new CompareStringLineDto();
 		}
 
-		int csaIdx = 0;
-		int csbIdx = 0;
+		int compareIdx = 0;
 
 		while (!isDone) {
 			if (!(i == 0 || j == 0) && table[i][j] != table[i][j - 1] && table[i][j] != table[i - 1][j]) {
@@ -38,40 +32,36 @@ public class CompareTextUtil implements IConstant {
 				i--;
 				j--;
 
-				compareStringA[csaIdx].setStr(a[i]);
-				compareStringA[csaIdx].setCompTypeCd("S");
-				compareStringB[csbIdx].setStr(b[j]);
-				compareStringB[csbIdx].setCompTypeCd("S");
+				compareString[compareIdx].setCompTypeCd("S");
+				compareString[compareIdx].setStrA(a[i]);
+				compareString[compareIdx].setStrB(b[j]);
 			} else {
 				if (j != 0 && table[i][j] == table[i][j - 1]) {
 					j--;
 
-					compareStringA[csaIdx].setStr("");
-					compareStringA[csaIdx].setCompTypeCd("D");
-					compareStringB[csbIdx].setStr(b[j]);
-					compareStringB[csbIdx].setCompTypeCd("D");
+					compareString[compareIdx].setCompTypeCd("D");
+					compareString[compareIdx].setStrA("");
+					compareString[compareIdx].setStrB(b[j]);
 				} else if (i != 0 && table[i][j] == table[i - 1][j]) {
 					i--;
 
-					compareStringA[csaIdx].setStr(a[i]);
-					compareStringA[csaIdx].setCompTypeCd("D");
-					compareStringB[csbIdx].setStr("");
-					compareStringB[csbIdx].setCompTypeCd("D");
+					compareString[compareIdx].setCompTypeCd("D");
+					compareString[compareIdx].setStrA(a[i]);
+					compareString[compareIdx].setStrB("");
 				}
 			}
 
-			csaIdx++;
-			csbIdx++;
+			compareIdx++;
 
 			if (i == 0 && j == 0) {
 				isDone = true;
 			}
 		}
 
-		return result.reverse().toString();
+		return compareString;
 	}
 
-	public String process(String a[], String b[]) {
+	public CompareStringLineDto[] process(String a[], String b[]) {
 		int table[][] = new int[a.length + 1][b.length + 1];
 
 		for (int j = 0; j <= b.length; j++) {
@@ -89,22 +79,7 @@ public class CompareTextUtil implements IConstant {
 			}
 		}
 
-		String result = trackSubsequence(table, a, b);
-
-		for (int i = COMPARE_SIZE - 1; i >= 0; i--) {
-			System.out.printf("%s %-70s %-70s\n", compareStringA[i].getCompTypeCd(), compareStringA[i].getStr(),
-					compareStringB[i].getStr());
-		}
-
-		return result;
-	}
-
-	public CompareStringLineDto[] generatorCompareStringLineDtoArray(String[] strArray) {
-		CompareStringLineDto[] result = new CompareStringLineDto[strArray.length];
-
-		for (int i = 0; i < strArray.length; i++) {
-			result[i].setStr(strArray[i]);
-		}
+		CompareStringLineDto[] result = trackSubsequence(table, a, b);
 
 		return result;
 	}
@@ -119,6 +94,10 @@ public class CompareTextUtil implements IConstant {
 		String[] text2ByNewLine = text2.toString().split(System.lineSeparator());
 
 		CompareTextUtil ctu = new CompareTextUtil();
-		ctu.process(text1ByNewLine, text2ByNewLine);
+		CompareStringLineDto[] result = ctu.process(text1ByNewLine, text2ByNewLine);
+
+		for (int i = result.length - 1; i >= 0; i--) {
+			System.out.printf("%s %-70s %-70s\n", result[i].getCompTypeCd(), result[i].getStrA(), result[i].getStrB());
+		}
 	}
 }
