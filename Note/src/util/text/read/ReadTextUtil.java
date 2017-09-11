@@ -1,4 +1,4 @@
-package util.readText;
+package util.text.read;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,9 +12,9 @@ public class ReadTextUtil {
 		BufferedReader in = null;
 		try {
 			in = new BufferedReader(new FileReader(textFilePath));
-			String s;
-			while ((s = in.readLine()) != null) {
-				strBuffer.append(s);
+			String str;
+			while ((str = in.readLine()) != null) {
+				strBuffer.append(str).append(System.lineSeparator());
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

@@ -1,5 +1,28 @@
-
-S
-DDD
-D
-S
+<ServiceProcessorRequest>
+	<creDate>20170602102102102</creDate>
+	<requestURI>/ZZ.im</requestURI>
+	<requestData type="java.lang.String" size="2103 bytes">[
+		<xml version='1.0' encoding = 'euc-kr'/>
+ 			<root>
+		 		<header>
+ 					<gId>b34389c26e1d46b692df362f4c53381f</gId>
+ 					<tranId>ZZOM0300M01U</tranId>
+		 			<channelId>CIS_IM</channelId>
+ 					<userId>imapp</userId>
+ 					<responseCode></responseCode>
+					<dttm>2017-09-11 16:35:57.974</dttm>
+ 					<responseMessage>가나다라마바사</responseMessage>
+					<errMsg>Error!</errMsg>
+ 				</header>
+ 				<data>
+ 					<indicator>U1</indicator>
+ 					<orgCat></orgCat>
+		 			<orgTypCat></orgTypCat>
+ 					<orgDepTypCat>622001</orgDepTypCat>
+		 			<regNo>100005</regNo>
+ 					<divTypCat></divTypCat>
+ 					<divCd>710800</divCd>
+		 		</data>
+ 			</root>
+ 	]</requestData>
+</ServiceProcessorRequest>
