@@ -1,28 +1,25 @@
-<ServiceProcessorRequest>
-	<creDate>20170602102102102</creDate>
-	<requestURI>/ZZ.im</requestURI>
-	<requestData type="java.lang.String" size="2103 bytes">[
-		<xml version='1.0' encoding = 'euc-kr'/>
- 			<root>
-		 		<header>
- 					<gId>b34389c26e1d46b692df362f4c53381f</gId>
- 					<tranId>ZZOM0300M01U</tranId>
-		 			<channelId>CIS_IM</channelId>
- 					<userId>imapp</userId>
- 					<responseCode></responseCode>
-					<dttm>2017-09-11 16:35:57.974</dttm>
- 					<responseMessage>가나다라마바사</responseMessage>
-					<errMsg>Error!</errMsg>
- 				</header>
- 				<data>
- 					<indicator>U1</indicator>
- 					<orgCat></orgCat>
-		 			<orgTypCat></orgTypCat>
- 					<orgDepTypCat>622001</orgDepTypCat>
-		 			<regNo>100005</regNo>
- 					<divTypCat></divTypCat>
- 					<divCd>710800</divCd>
-		 		</data>
- 			</root>
- 	]</requestData>
-</ServiceProcessorRequest>
+{
+"test_id":"zzzz",
+"svc_intf_clcf_cd":"S",
+"test_nm":"zzzz",
+"test_desc":"zzzz",
+"snd_prtcl_id":null,
+"rcv_prtcl_id":"BXM-Layout",
+"snd_req_body_layout_id":null,
+"snd_resp_body_layout_id":null,
+"rcv_req_body_layout_id":"BXMTEST2",
+"rcv_resp_body_layout_id":"BxmWebAdminInHeader",
+"snd_req_deft_val_data":null,
+"rcv_req_deft_val_data":null,
+"snd_hdr_clcf_val_data":null,
+"rcv_hdr_clcf_val_data":null,
+"snd_http_extra_url":null,
+"snd_http_method":null,
+"rcv_http_extra_url":null,
+"rcv_http_method":"P",
+"user_check_yn":"N",
+"reg_user_id":null,
+"reg_dttm":"2017-09-15 17:48:48.014",
+"last_updt_user_id":null,
+"last_updt_dttm":"2017-09-15 17:48:48.014"
+}
