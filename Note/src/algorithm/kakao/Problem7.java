@@ -20,7 +20,21 @@ public class Problem7 {
 		}
 	}
 
+	private static void sort(String[] strs) {
+		for (int i = 0; i < strs.length; i++) {
+			for (int j = i + 1; j < strs.length; j++) {
+				if (strs[i].length() < strs[j].length()) {
+					String temp = strs[i];
+					strs[i] = strs[j];
+					strs[j] = temp;
+				}
+			}
+		}
+	}
+
 	public static int solution(String[] strs, String t) {
+
+		sort(strs);
 
 		recursive(strs, t, 0);
 

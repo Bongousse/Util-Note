@@ -2,6 +2,8 @@ package dblistener.postgresql;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -39,8 +41,14 @@ public class ListenNotify {
 		PGNotificationListener listener = new PGNotificationListener() {
 			@Override
 			public void notification(int processId, String channelName, String payload) {
+				long time = System.currentTimeMillis();
+
+				SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+
+				String date = dayTime.format(new Date(time));
+
 				// Add event and payload to the queue
-				queue.add("/channels/" + channelName + " " + payload);
+				queue.add("/channels/" + channelName + " [" + date + "]" + " " + payload);
 			}
 		};
 
