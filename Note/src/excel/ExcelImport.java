@@ -49,7 +49,7 @@ public class ExcelImport {
 					// row의 cell 탐색 for문
 					for (int cellIndex = 0; cellIndex < curRow.getPhysicalNumberOfCells(); cellIndex++) {
 						curCell = curRow.getCell(cellIndex);
-						if(curCell == null)
+						if (curCell == null)
 							continue;
 
 						value = "";
