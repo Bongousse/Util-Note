@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.samsung;
 
 import java.util.Scanner;
 
